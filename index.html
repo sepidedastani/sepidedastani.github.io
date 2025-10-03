@@ -87,6 +87,40 @@
     input, textarea, select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
     label{font-weight:600}
     .hint{font-size:12px;color:var(--muted)}
+
+    /* ——— Certificate modal ——— */
+    .cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    @media (max-width:900px){ .cert-grid { grid-template-columns:1fr; } }
+
+    .cert-btn {
+      display:flex; align-items:center; gap:10px; width:100%;
+      background:var(--card); color:var(--text); text-align:left;
+      border:1px solid var(--border); border-radius:12px; padding:12px;
+      cursor:pointer;
+    }
+    .cert-btn:hover { border-color:var(--accent); }
+
+    .cert-thumb { width:44px; height:44px; border-radius:8px; object-fit:cover; border:1px solid var(--border); }
+
+    dialog.modal {
+      border:none; padding:0; border-radius:16px; max-width:min(92vw, 900px);
+      background:var(--panel); box-shadow:var(--shadow);
+    }
+    dialog.modal::backdrop { background:rgba(0,0,0,.6); backdrop-filter: blur(2px); }
+
+    .modal-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 14px; border-bottom:1px solid var(--border);
+    }
+    .modal-title { font-weight:700; }
+    .modal-close {
+      border:0; background:transparent; color:var(--text); font-size:22px; cursor:pointer;
+    }
+
+    .modal-body { padding:0; }
+    #cert-img, #cert-frame { display:block; width:100%; height:auto; border:0; border-radius:0 0 16px 16px; }
+    #cert-frame { height:min(80vh, 900px); } /* for PDFs */
+
   </style>
 </head>
 <body>
@@ -119,24 +153,6 @@
 
   <main class="wrap">
     <!-- HERO -->
-    <!-- <section class="hero">
-      <div>
-        <h1 class="title">Stronger. Leaner. Confident.</h1>
-        <p class="subtitle">1:1 personal training and nutrition coaching—online or in-person. Sustainable results with science-backed plans tailored to your lifestyle.</p>
-        <div class="badges">
-          <span class="badge">NASM-CPT</span>
-          <span class="badge">Precision Nutrition L1</span>
-          <span class="badge">CPR/AED</span>
-          <span class="badge">7+ years coaching</span>
-        </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
-          <a class="cta" href="#book">Free Consultation</a>
-          <a class="badge" href="#transformations">See Results</a>
-        </div>
-      </div>
-      <div class="hero-card"><img src="images/coach-hero.jpg" alt="Coach training a client"/></div>
-    </section> -->
-
     <section class="hero">
       <div>
         <h1 class="title">Hi, I’m Coach Sepide. Let’s make fitness fit your life.</h1>
@@ -254,6 +270,45 @@
       </div>
     </section>
 
+    <section id="certifications" class="panel" aria-labelledby="certs-title" style="margin-top:16px">
+      <span class="kicker">Certifications</span>
+      <h2 id="certs-title">Verified Credentials</h2>
+    
+      <div class="cert-grid" style="margin-top:12px">
+        <!-- Example image certificate -->
+        <button class="cert-btn" data-cert-src="images/certs/nasm-cpt.jpg" data-cert-title="NASM-CPT (Certified Personal Trainer)" aria-haspopup="dialog" aria-controls="cert-modal">
+          <img class="cert-thumb" src="images/certs/nasm-cpt_thumb.jpg" alt="NASM-CPT thumbnail">
+          <div>
+            <div><strong>NASM-CPT</strong></div>
+            <div class="muted">Certified Personal Trainer</div>
+          </div>
+        </button>
+    
+        <!-- Example PDF certificate -->
+        <button class="cert-btn" data-cert-src="images/ISSA-Nutritionist-Certification.pdf" data-cert-type="pdf" data-cert-title="Precision Nutrition Level 1" aria-haspopup="dialog" aria-controls="cert-modal">
+          <img class="cert-thumb" src="images/nutritionist.png" alt="Precision Nutrition L1 thumbnail">
+          <div>
+            <div><strong>Nutritionist</strong></div>
+            <div class="muted">Nutrition Coaching</div>
+          </div>
+        </button>
+    
+        <!-- Add more buttons as needed -->
+      </div>
+    </section>
+    
+    <!-- Modal dialog (place once near end of <main> or before </body>) -->
+    <dialog id="cert-modal" class="modal" aria-label="Certificate preview">
+      <div class="modal-header">
+        <div class="modal-title" id="cert-title">Certificate</div>
+        <button class="modal-close" aria-label="Close preview" onclick="document.getElementById('cert-modal').close()">×</button>
+      </div>
+      <div class="modal-body">
+        <img id="cert-img" alt="Certificate image" style="display:none">
+        <iframe id="cert-frame" title="Certificate PDF" style="display:none"></iframe>
+      </div>
+    </dialog>
+    
     <!-- PRICING -->
     <section id="pricing" class="panel" aria-labelledby="pricing-title" style="margin-top:16px">
       <span class="kicker">Pricing</span>
@@ -382,6 +437,50 @@
       input.addEventListener('input', update);
       update();
     });
+
+    // Certificate modal
+    (function(){
+      const modal  = document.getElementById('cert-modal');
+      if (!modal) return; // safety if section removed
+      const img    = document.getElementById('cert-img');
+      const frame  = document.getElementById('cert-frame');
+      const title  = document.getElementById('cert-title');
+
+      document.querySelectorAll('[data-cert-src]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const src   = btn.getAttribute('data-cert-src');
+          const kind  = btn.getAttribute('data-cert-type') || 'img';
+          const label = btn.getAttribute('data-cert-title') || 'Certificate';
+
+          title.textContent = label;
+
+          // reset views
+          img.style.display = 'none';
+          frame.style.display = 'none';
+          img.removeAttribute('src');
+          frame.removeAttribute('src');
+
+          if (kind === 'pdf' || /\.pdf$/i.test(src)) {
+            frame.src = src;
+            frame.style.display = 'block';
+          } else {
+            img.src = src;
+            img.alt = label;
+            img.style.display = 'block';
+          }
+          if (typeof modal.showModal === 'function') modal.showModal();
+          else modal.setAttribute('open','');
+        });
+      });
+
+      // click outside to close
+      modal.addEventListener('click', (e) => {
+        const rect = modal.getBoundingClientRect();
+        const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+        if (!inside) modal.close();
+      });
+    })();
+
   </script>
 
   <!-- Structured data (update values for SEO) -->
