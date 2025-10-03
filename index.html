@@ -38,7 +38,13 @@
     @media (max-width:800px){.nav ul{display:none} nav details{display:block} nav summary{list-style:none;cursor:pointer}}
 
     .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;padding:42px 24px}
-    .title{font-size:clamp(28px,5vw,52px);line-height:1.05;margin:0 0 8px}
+    /* .title{font-size:clamp(28px,5vw,52px);line-height:1.05;margin:0 0 8px} */
+    .title{
+        font-size: clamp(24px, 3.5vw, 38px);  /* smaller min/mid/max */
+        line-height: 1.15;                    /* a bit more breathing room */
+        margin: 0 0 6px;
+      }
+
     .subtitle{color:var(--muted);margin:4px 0 16px}
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
     .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:14px}
@@ -135,17 +141,14 @@
       <div>
         <h1 class="title">Hi, I’m Coach Sepide. Let’s make fitness fit your life.</h1>
         <p class="subtitle">
-          Personalized strength & fat-loss coaching for busy professionals—structured workouts,
-          habit-based nutrition, and weekly accountability. Montreal + online.
+          Personalized strength & fat-loss coaching for busy professionals. Montreal + online.
         </p>
         <div class="badges">
           <span class="badge">ISSA</span>
           <span class="badge">Personal Trainer</span>
           <span class="badge">Nutritionist</span>
           <span class="badge">Corrective Excercize Specialist</span>
-          <span class="badge">Specialist in Strength and Condition</span>
           <span class="badge">CPR/AED</span>
-          <span class="badge">Women’s strength</span>
           <span class="badge">7+ years coaching</span>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap">
