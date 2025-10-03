@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coach Sepide — Personal Training & Nutrition</title>
+  <meta name="description" content="Transform your body with science-backed training and sustainable nutrition. 1:1 coaching, small groups, and online programs." />
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { /* theme */
+      --bg: #0b0c10; --panel:#0f1117; --card:#151826; --text:#f1f5f9; --muted:#94a3b8;
+      --accent:#22d3ee; --accent-2:#60a5fa; --border:#22263a; --ok:#34d399; --warn:#fbbf24; --err:#f87171;
+      --shadow: 0 10px 30px rgba(2,6,23,.4);
+    }
+    @media (prefers-color-scheme: light){
+      :root { --bg:#f8fafc; --panel:#ffffff; --card:#ffffff; --text:#0f172a; --muted:#475569; --accent:#06b6d4; --accent-2:#2563eb; --border:#e5e7eb; --shadow:0 10px 30px rgba(2,6,23,.06) }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial;color:var(--text);background:
+      radial-gradient(1000px 500px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
+      radial-gradient(800px 400px at 120% 0%, rgba(96,165,250,.12), transparent 60%), var(--bg)}
+    a{color:var(--accent-2)} a:hover{opacity:.9}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;z-index:40;backdrop-filter:blur(8px) saturate(160%);background:color-mix(in oklab, var(--bg) 88%, transparent);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
+    .brand img{width:30px;height:30px;border-radius:8px}
+    .nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    .nav a{text-decoration:none;color:var(--text);opacity:.95}
+    .nav a:hover{color:var(--accent)}
+    .cta{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#0b1020;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700}
+    .cta:hover{filter:brightness(1.05)}
+    nav details{display:none}
+    @media (max-width:800px){.nav ul{display:none} nav details{display:block} nav summary{list-style:none;cursor:pointer}}
+
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;padding:42px 24px}
+    .title{font-size:clamp(28px,5vw,52px);line-height:1.05;margin:0 0 8px}
+    .subtitle{color:var(--muted);margin:4px 0 16px}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+    .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:14px}
+    .hero-card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:18px}
+    .hero img{width:100%;height:360px;border-radius:18px;object-fit:cover}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}}
+
+    section{padding:10px 24px}
+    h2{font-size:24px;margin:0 0 8px}
+    .kicker{color:var(--accent);font-weight:700;letter-spacing:.2px;text-transform:uppercase;font-size:12px}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media (max-width:900px){.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
+    .card h3{margin:0 0 6px}
+    .price{font-size:28px;font-weight:800}
+    .muted{color:var(--muted)}
+
+    /* Before/After comparison */
+    .compare{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--border);height:320px}
+    .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .compare .after{clip-path:inset(0 0 0 var(--pos,50%))}
+    .compare input{position:absolute;inset:auto 0 0 0;width:100%;appearance:none;height:36px;background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.9}
+    .compare input::-webkit-slider-thumb{appearance:none;width:0;height:0}
+    .compare .handle{position:absolute;top:0;bottom:36px;left:var(--pos,50%);width:2px;background:#fff;box-shadow:0 0 0 1px var(--border);}
+
+    .timeline{position:relative;padding-left:18px}
+    .timeline::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--border)}
+    .t-item{position:relative;margin:12px 0}
+    .t-item::before{content:"";position:absolute;left:-2px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
+
+    footer{padding:36px 0 48px;text-align:center;color:var(--muted)}
+    .social{display:flex;gap:10px;justify-content:center;margin-top:10px}
+    .social a{border:1px solid var(--border);padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text)}
+
+    form{display:grid;gap:12px}
+    input, textarea, select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    label{font-weight:600}
+    .hint{font-size:12px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav wrap">
+      <div class="brand"><img src="images/logo.png" alt="Coach Sepide logo"/><span>Coach Sepide</span></div>
+      <nav>
+        <ul>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#transformations">Transformations</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a class="cta" href="#book">Book Now</a></li>
+        </ul>
+        <details>
+          <summary>Menu ▾</summary>
+          <ul>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#transformations">Transformations</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a class="cta" href="#book">Book Now</a></li>
+          </ul>
+        </details>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1 class="title">Stronger. Leaner. Confident.</h1>
+        <p class="subtitle">1:1 personal training and nutrition coaching—online or in-person. Sustainable results with science-backed plans tailored to your lifestyle.</p>
+        <div class="badges">
+          <span class="badge">NASM-CPT</span>
+          <span class="badge">Precision Nutrition L1</span>
+          <span class="badge">CPR/AED</span>
+          <span class="badge">5+ years coaching</span>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="cta" href="#book">Free Consultation</a>
+          <a class="badge" href="#transformations">See Results</a>
+        </div>
+      </div>
+      <div class="hero-card"><img src="images/coach-hero.jpg" alt="Coach training a client"/></div>
+    </section>
+
+    <!-- PROGRAMS / SERVICES -->
+    <section id="programs" class="panel" aria-labelledby="programs-title">
+      <span class="kicker">Programs</span>
+      <h2 id="programs-title">How We Can Work Together</h2>
+      <p class="muted">Choose the format that fits your goals, schedule, and budget.</p>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h3>1:1 Personal Training</h3>
+          <p>In-person sessions with form coaching, progressive programming, and real-time adjustments.</p>
+          <ul>
+            <li>Custom plan & periodization</li>
+            <li>Technique video feedback</li>
+            <li>Nutrition guidance</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Small Group (2–4)</h3>
+          <p>Train with friends or meet accountability partners. Cost-effective, fun, and motivating.</p>
+          <ul>
+            <li>Skill-based circuits</li>
+            <li>Strength & conditioning</li>
+            <li>Shared progress tracking</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Online Coaching</h3>
+          <p>Remote programming and weekly check-ins via app. Perfect for busy schedules.</p>
+          <ul>
+            <li>App-based workouts (video demos)</li>
+            <li>Weekly voice/video check-ins</li>
+            <li>Habit building & accountability</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSFORMATIONS -->
+    <section id="transformations" class="panel" aria-labelledby="tx-title" style="margin-top:16px">
+      <span class="kicker">Results</span>
+      <h2 id="tx-title">Client Transformations</h2>
+      <p class="muted">Slide to compare before/after. Replace with your clients’ photos and stories (with permission).</p>
+      <div class="grid-2" style="margin-top:12px">
+        <div class="card">
+          <div class="compare" data-compare>
+            <img src="images/client1-before.jpg" alt="Client before"/>
+            <img class="after" src="images/client1-after.jpg" alt="Client after"/>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="50" aria-label="Compare before and after" />
+          </div>
+          <p><strong>Leila — 16 weeks</strong><br><span class="muted">-8kg fat, +3kg lean mass, improved confidence and posture.</span></p>
+        </div>
+        <div class="card">
+          <div class="compare" data-compare>
+            <img src="images/client2-before.jpg" alt="Client before"/>
+            <img class="after" src="images/client2-after.jpg" alt="Client after"/>
+            <div class="handle"></div>
+            <input type="range" min="0" max="100" value="45" aria-label="Compare before and after" />
+          </div>
+          <p><strong>Armin — 20 weeks</strong><br><span class="muted">Down 12cm waist, first unassisted pull-up, consistent nutrition.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / CERTS / EXPERIENCE -->
+    <section id="about" class="panel" aria-labelledby="about-title" style="margin-top:16px">
+      <span class="kicker">About</span>
+      <h2 id="about-title">Meet Coach Sepide</h2>
+      <div class="grid-2" style="margin-top:8px">
+        <div class="card">
+          <h3>Philosophy</h3>
+          <p>I help busy professionals get strong, lean, and pain-free with efficient training and realistic nutrition. No crash diets, no gimmicks—just sustainable systems and accountability.</p>
+          <h3 style="margin-top:10px">Certifications</h3>
+          <ul>
+            <li>NASM-CPT (Certified Personal Trainer)</li>
+            <li>Precision Nutrition Level 1</li>
+            <li>CPR/AED Certified</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Experience</h3>
+          <div class="timeline">
+            <div class="t-item"><strong>2022–Present</strong> — Head Trainer, Flow Athletics</div>
+            <div class="t-item"><strong>2020–2022</strong> — Personal Trainer, Lift Lab</div>
+            <div class="t-item"><strong>2019–2020</strong> — Internship, University Strength Center</div>
+          </div>
+          <p class="muted" style="margin-top:8px">Specialties: strength, fat loss, mobility, prehab, beginner & return-to-training.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="panel" aria-labelledby="pricing-title" style="margin-top:16px">
+      <span class="kicker">Pricing</span>
+      <h2 id="pricing-title">Plans</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card">
+          <h3>Starter</h3>
+          <div class="price">$79<span class="muted">/mo</span></div>
+          <p class="muted">Online coaching: monthly plan + weekly check-ins.</p>
+          <ul>
+            <li>Personalized program</li>
+            <li>Nutrition guidance</li>
+            <li>Email support</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:var(--accent)">
+          <h3>Pro</h3>
+          <div class="price">$249<span class="muted">/mo</span></div>
+          <p class="muted">Online coaching: bi-weekly calls, habit tracking, form checks.</p>
+          <ul>
+            <li>Everything in Starter</li>
+            <li>Bi-weekly calls</li>
+            <li>Form video feedback</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>1:1 Sessions</h3>
+          <div class="price">$75<span class="muted">/session</span></div>
+          <p class="muted">In-person training (packages available).</p>
+          <ul>
+            <li>60-minute sessions</li>
+            <li>Technique & mobility</li>
+            <li>Progress tracking</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:10px">* Prices are placeholders — set your own rates, currencies, and packages.</p>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="panel" aria-labelledby="faq-title" style="margin-top:16px">
+      <span class="kicker">FAQ</span>
+      <h2 id="faq-title">Common Questions</h2>
+      <details class="card"><summary><strong>Do I need a gym membership?</strong></summary><p>Not required. Programs can be designed for home or gym. In-person sessions happen at partner facilities.</p></details>
+      <details class="card"><summary><strong>What equipment do I need at home?</strong></summary><p>A pair of adjustable dumbbells and resistance bands are enough to begin. We’ll scale up as needed.</p></details>
+      <details class="card"><summary><strong>What’s your cancellation policy?</strong></summary><p>24-hour notice for in-person sessions. Online coaching is billed monthly and can be cancelled any cycle.</p></details>
+    </section>
+
+    <!-- BOOKING / CONTACT FORM -->
+    <section id="book" class="panel" aria-labelledby="book-title" style="margin-top:16px">
+      <span class="kicker">Get Started</span>
+      <h2 id="book-title">Book a Free Consultation</h2>
+      <div class="grid-2" style="margin-top:8px">
+        <form action="#" method="post">
+          <div>
+            <label for="name">Full Name</label>
+            <input id="name" name="name" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <label for="goal">Primary Goal</label>
+            <select id="goal" name="goal" required>
+              <option value="">Select...</option>
+              <option>Fat loss</option>
+              <option>Muscle gain</option>
+              <option>Strength</option>
+              <option>Mobility / Rehab</option>
+              <option>General fitness</option>
+            </select>
+          </div>
+          <div>
+            <label for="message">Tell me about you</label>
+            <textarea id="message" name="message" rows="4" placeholder="Schedule, training history, injuries, preferences..."></textarea>
+          </div>
+          <button class="cta" type="submit">Request Call</button>
+          <div class="hint">By submitting, you agree to be contacted about coaching services.</div>
+        </form>
+        <div class="card">
+          <h3>What happens next?</h3>
+          <ol>
+            <li>We schedule a 15–20 min discovery call.</li>
+            <li>We outline a plan based on your goals & schedule.</li>
+            <li>If it’s a fit, we start your first week!</li>
+          </ol>
+          <p class="muted">Prefer email? <a href="mailto:sonita.d1376@gmail.com">sonita.d1376@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (optional) -->
+    <section class="panel" aria-labelledby="test-title" style="margin-top:16px">
+      <span class="kicker">Testimonials</span>
+      <h2 id="test-title">What Clients Say</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card"><p>“I finally feel in control of my fitness. Down 7kg, stronger than ever.”</p><p class="muted">— Sam R.</p></div>
+        <div class="card"><p>“The weekly check-ins kept me accountable without feeling restrictive.”</p><p class="muted">— Mina H.</p></div>
+        <div class="card"><p>“Technique cues fixed my squat in two sessions. No more knee pain.”</p><p class="muted">— Leo T.</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="yr"></span> Coach Sepide • Personal Training & Nutrition</div>
+      <div class="social">
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+        <a href="#">TikTok</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // Before/After compare sliders
+    document.querySelectorAll('[data-compare]').forEach(function(el){
+      const input = el.querySelector('input[type="range"]');
+      const handle = el.querySelector('.handle');
+      function update(){
+        const pct = input.value;
+        el.style.setProperty('--pos', pct + '%');
+      }
+      input.addEventListener('input', update);
+      update();
+    });
+  </script>
+
+  <!-- Structured data (update values for SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Coach Sepide",
+    "description": "Personal training and online nutrition coaching.",
+    "areaServed": "Montreal, QC",
+    "url": "https://novafit.example",
+    "image": "https://novafit.example/images/coach-hero.jpg",
+    "priceRange": "$$",
+    "sameAs": ["https://instagram.com/yourhandle"],
+    "address": {"@type":"PostalAddress","addressLocality":"Montreal","addressRegion":"QC","addressCountry":"CA"}
+  }
+  </script>
+</body>
+</html>
