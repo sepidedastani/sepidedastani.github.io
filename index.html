@@ -3,58 +3,68 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coach Sepide — Personal Training & Nutrition</title>
-  <meta name="description" content="Transform your body with science-backed training and sustainable nutrition. 1:1 coaching, small groups, and online programs." />
+  <title>Coach Sepide — Personal Training & Nutrition (Montreal + Online)</title>
+  <meta name="description" content="Build strength, lose fat, and feel confident with Coach Sepide. Sustainable training and nutrition for busy people — in Montreal or online. Book a free consultation." />
   <link rel="icon" href="images/logo.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { /* theme */
-      --bg: #0b0c10; --panel:#0f1117; --card:#151826; --text:#f1f5f9; --muted:#94a3b8;
-      --accent:#22d3ee; --accent-2:#60a5fa; --border:#22263a; --ok:#34d399; --warn:#fbbf24; --err:#f87171;
-      --shadow: 0 10px 30px rgba(2,6,23,.4);
-    }
-    @media (prefers-color-scheme: light){
-      :root { --bg:#f8fafc; --panel:#ffffff; --card:#ffffff; --text:#0f172a; --muted:#475569; --accent:#06b6d4; --accent-2:#2563eb; --border:#e5e7eb; --shadow:0 10px 30px rgba(2,6,23,.06) }
+    /* =============================
+       THEME — light, fresh, energetic
+       ============================= */
+    :root{
+      --bg: #f7fbff;           /* page background */
+      --panel: #ffffff;        /* section panels */
+      --card: #ffffff;         /* cards */
+      --text: #0b1220;         /* primary text */
+      --muted:#4b5563;         /* secondary text */
+      --accent:#0ea5e9;        /* sky */
+      --accent-2:#22c55e;      /* green */
+      --border:#e5eef7;        /* soft border */
+      --chip:#e9f5ff;          /* chip bg */
+      --shadow: 0 12px 30px rgba(15, 23, 42, .08);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;font:16px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial;color:var(--text);background:
-      radial-gradient(1000px 500px at 10% -10%, rgba(34,211,238,.10), transparent 60%),
-      radial-gradient(800px 400px at 120% 0%, rgba(96,165,250,.12), transparent 60%), var(--bg)}
-    a{color:var(--accent-2)} a:hover{opacity:.9}
-    .wrap{max-width:1100px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;z-index:40;backdrop-filter:blur(8px) saturate(160%);background:color-mix(in oklab, var(--bg) 88%, transparent);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 24px}
+    body{
+      margin:0; font:16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 80% -10%, rgba(34,197,94,.08), transparent 60%),
+        radial-gradient(900px 500px at 10% -10%, rgba(14,165,233,.10), transparent 60%),
+        var(--bg);
+    }
+    a{color:var(--accent)} a:hover{opacity:.9}
+    .wrap{max-width:1120px;margin:0 auto;padding:24px}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:40;backdrop-filter:blur(8px) saturate(140%);background:rgba(255,255,255,.75);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
     .brand img{width:30px;height:30px;border-radius:8px}
     .nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
-    .nav a{text-decoration:none;color:var(--text);opacity:.95}
+    .nav a{text-decoration:none;color:var(--text)}
     .nav a:hover{color:var(--accent)}
-    .cta{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#0b1020;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700}
-    .cta:hover{filter:brightness(1.05)}
+    .cta{display:inline-block;background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#03242b;text-decoration:none;padding:10px 16px;border-radius:12px;font-weight:700}
     nav details{display:none}
-    @media (max-width:800px){.nav ul{display:none} nav details{display:block} nav summary{list-style:none;cursor:pointer}}
+    @media (max-width:860px){.nav ul{display:none} nav details{display:block} nav summary{list-style:none;cursor:pointer}}
 
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center;padding:42px 24px}
-    /* .title{font-size:clamp(28px,5vw,52px);line-height:1.05;margin:0 0 8px} */
-    .title{
-        font-size: clamp(24px, 3.5vw, 38px);  /* smaller min/mid/max */
-        line-height: 1.15;                    /* a bit more breathing room */
-        margin: 0 0 6px;
-      }
-
-    .subtitle{color:var(--muted);margin:4px 0 16px}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:center;padding:46px 24px}
+    .title{font-size:clamp(26px,3.6vw,40px);line-height:1.15;margin:0 0 10px}
+    .subtitle{color:var(--muted);margin:6px 0 16px}
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
-    .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;color:var(--muted);font-size:14px}
-    .hero-card{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:18px}
-    .hero img{width:100%;height:360px;border-radius:18px;object-fit:cover}
+    .badge{background:var(--chip);border:1px solid var(--border);padding:6px 12px;border-radius:999px;color:#075985;font-size:14px}
+    .hero-card{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:16px}
+    .hero img{width:100%;height:360px;border-radius:12px;object-fit:cover}
+    .hero .quick{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
     @media (max-width:980px){.hero{grid-template-columns:1fr}}
 
-    section{padding:10px 24px}
+    /* Sections */
+    section{padding:12px 24px}
     h2{font-size:24px;margin:0 0 8px}
-    .kicker{color:var(--accent);font-weight:700;letter-spacing:.2px;text-transform:uppercase;font-size:12px}
+    .kicker{color:var(--accent);font-weight:800;letter-spacing:.3px;text-transform:uppercase;font-size:12px}
     .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);padding:22px}
 
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -63,63 +73,108 @@
 
     .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px}
     .card h3{margin:0 0 6px}
-    .price{font-size:28px;font-weight:800}
     .muted{color:var(--muted)}
+    .checklist{display:grid;gap:8px;margin-top:8px}
 
-    /* Before/After comparison */
+    /* Compare */
     .compare{position:relative;overflow:hidden;border-radius:14px;border:1px solid var(--border);height:320px}
     .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .compare .after{clip-path:inset(0 0 0 var(--pos,50%))}
     .compare input{position:absolute;inset:auto 0 0 0;width:100%;appearance:none;height:36px;background:linear-gradient(90deg,var(--accent),var(--accent-2));opacity:.9}
     .compare input::-webkit-slider-thumb{appearance:none;width:0;height:0}
-    .compare .handle{position:absolute;top:0;bottom:36px;left:var(--pos,50%);width:2px;background:#fff;box-shadow:0 0 0 1px var(--border);}
+    .compare .handle{position:absolute;top:0;bottom:36px;left:var(--pos,50%);width:2px;background:#fff;box-shadow:0 0 0 1px var(--border)}
 
+    /* Steps */
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .step{padding:16px;border:1px solid var(--border);border-radius:12px;background:#f9fcff}
+    .step strong{display:block;margin-bottom:6px}
+    @media (max-width:900px){.steps{grid-template-columns:1fr}}
+
+    /* Timeline */
     .timeline{position:relative;padding-left:18px}
     .timeline::before{content:"";position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--border)}
     .t-item{position:relative;margin:12px 0}
     .t-item::before{content:"";position:absolute;left:-2px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--accent)}
 
-    footer{padding:36px 0 48px;text-align:center;color:var(--muted)}
+    /* Pricing */
+    .price{font-size:26px;font-weight:800}
+
+    footer{padding:40px 0 52px;text-align:center;color:var(--muted)}
     .social{display:flex;gap:10px;justify-content:center;margin-top:10px}
     .social a{border:1px solid var(--border);padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--text)}
 
     form{display:grid;gap:12px}
-    input, textarea, select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
+    input, textarea, select{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:#fbfdff;color:var(--text)}
     label{font-weight:600}
     .hint{font-size:12px;color:var(--muted)}
 
-    /* ——— Certificate modal ——— */
+    /* Certifications modal (updated) */
     .cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
     @media (max-width:900px){ .cert-grid { grid-template-columns:1fr; } }
 
     .cert-btn {
-      display:flex; align-items:center; gap:10px; width:100%;
-      background:var(--card); color:var(--text); text-align:left;
-      border:1px solid var(--border); border-radius:12px; padding:12px;
-      cursor:pointer;
+    display:flex; align-items:center; gap:10px; width:100%;
+    background:#fbfdff; color:var(--text); text-align:left;
+    border:1px solid var(--border); border-radius:12px; padding:12px; cursor:pointer;
     }
     .cert-btn:hover { border-color:var(--accent); }
 
     .cert-thumb { width:44px; height:44px; border-radius:8px; object-fit:cover; border:1px solid var(--border); }
 
-    dialog.modal {
-      border:none; padding:0; border-radius:16px; max-width:min(92vw, 900px);
-      background:var(--panel); box-shadow:var(--shadow);
+    dialog.modal{
+    border:none; padding:0; border-radius:16px;
+    width:min(92vw, 1000px);              /* ← wider, rectangular */
+    max-width:1000px;
+    background:var(--panel); box-shadow:var(--shadow);
     }
-    dialog.modal::backdrop { background:rgba(0,0,0,.6); backdrop-filter: blur(2px); }
+    dialog.modal::backdrop{ background:rgba(0,0,0,.55); backdrop-filter: blur(2px); }
 
-    .modal-header {
-      display:flex; align-items:center; justify-content:space-between;
-      padding:10px 14px; border-bottom:1px solid var(--border);
+    .modal-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 14px; border-bottom:1px solid var(--border);
     }
-    .modal-title { font-weight:700; }
-    .modal-close {
-      border:0; background:transparent; color:var(--text); font-size:22px; cursor:pointer;
+    .modal-title{ font-weight:700; }
+    .modal-close{ border:0; background:transparent; color:var(--text); font-size:22px; cursor:pointer; }
+
+    .modal-body{ padding:0; background:#1110; }
+    #cert-img, #cert-frame{
+    display:block; width:100%; border:0; border-radius:0 0 16px 16px;
+    }
+    #cert-img{
+    height:auto; max-height:80vh;          /* fills width; stays sharp */
+    }
+    #cert-frame{
+    height:80vh;                            /* taller viewport for PDFs */
     }
 
-    .modal-body { padding:0; }
-    #cert-img, #cert-frame { display:block; width:100%; height:auto; border:0; border-radius:0 0 16px 16px; }
-    #cert-frame { height:min(80vh, 900px); } /* for PDFs */
+    /* Transformations gallery */
+    .tx-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+    }
+    @media (max-width:1000px){ .tx-grid{ grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:640px){ .tx-grid{ grid-template-columns:1fr; } }
+
+    .tx-card{
+    margin:0; padding:0;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    }
+    .tx-card img{
+    width:100%;
+    height:auto;               /* keeps your tall/wide images intact */
+    display:block;
+    }
+    .tx-caption{
+    padding:10px 12px;
+    font-size:14px;
+    color:var(--muted);
+    background:rgba(0,0,0,0);  /* transparent caption bar */
+    }
 
   </style>
 </head>
@@ -129,22 +184,22 @@
       <div class="brand"><img src="images/logo.png" alt="Coach Sepide logo"/><span>Coach Sepide</span></div>
       <nav>
         <ul>
+          <li><a href="#results">Results</a></li>
           <li><a href="#programs">Programs</a></li>
-          <li><a href="#transformations">Transformations</a></li>
+          <li><a href="#how">How It Works</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a class="cta" href="#book">Book Now</a></li>
+          <li><a class="cta" href="#book">Free Consultation</a></li>
         </ul>
         <details>
           <summary>Menu ▾</summary>
           <ul>
+            <li><a href="#results">Results</a></li>
             <li><a href="#programs">Programs</a></li>
-            <li><a href="#transformations">Transformations</a></li>
+            <li><a href="#how">How It Works</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a class="cta" href="#book">Book Now</a></li>
+            <li><a class="cta" href="#book">Free Consultation</a></li>
           </ul>
         </details>
       </nav>
@@ -152,111 +207,125 @@
   </header>
 
   <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
+    <!-- 1. HERO -->
+    <section class="hero panel">
       <div>
         <h1 class="title">Hi, I’m Coach Sepide. Let’s make fitness fit your life.</h1>
-        <p class="subtitle">
-          Personalized strength & fat-loss coaching for busy professionals.
-        </p>
-        <p class="subtitle">
-          Montreal + Online
-        </p>
+        <p class="subtitle">Build strength, lose fat, and feel confident with sustainable workouts and habit-based nutrition. In-person in Montreal or online.</p>
         <div class="badges">
-          <span class="badge">ISSA</span>
-          <span class="badge">Personal Trainer</span>
-          <span class="badge">Nutritionist</span>
-          <span class="badge">Corrective Excercize Specialist</span>
+          <span class="badge">ISSA-CPT</span>
+          <span class="badge">Nutrition Coach</span>
+          <span class="badge">Corrective Exercise</span>
           <span class="badge">CPR/AED</span>
           <span class="badge">7+ years coaching</span>
         </div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="quick">
           <a class="cta" href="#book">Start with a Free Consultation</a>
-          <a class="badge" href="#programs">See Programs</a>
+          <a class="badge" href="#results">See Transformations</a>
         </div>
       </div>
-      <div class="hero-card">
-        <img src="images/sepide.png" alt="Coach Sepide coaching a dumbbell row"/>
+      <div class="hero-card"><img src="images/sepide.png" alt="Coach Sepide training a client"></div>
+    </section>
+
+    <!-- 2. SOCIAL PROOF / QUICK TRUST -->
+    <section class="panel" aria-labelledby="trust-title" style="margin-top:16px">
+      <span class="kicker">Why clients choose Sepide</span>
+      <h2 id="trust-title">Real coaching. Real life. Real results.</h2>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="card"><h3>Personalized Plans</h3><p class="muted">Programs built around your schedule, equipment, and history, not generic templates.</p></div>
+        <div class="card"><h3>Technique & Accountability</h3><p class="muted">Form feedback, weekly check-ins, and small habit changes that stick.</p></div>
+        <div class="card"><h3>Sustainable Nutrition</h3><p class="muted">No crash diets. Learn how to eat for your goals without giving up real life.</p></div>
       </div>
     </section>
+
+    <!-- 3. RESULTS (transformations first to motivate) -->
+    <section id="transformations" class="panel" aria-labelledby="tx-title" style="margin-top:16px">
+        <span class="kicker">Results</span>
+        <h2 id="tx-title">Client Transformations</h2>
+        <p class="muted">Before/after progress shared with permission.</p>
     
-    <!-- PROGRAMS / SERVICES -->
-    <section id="programs" class="panel" aria-labelledby="programs-title">
+        <div class="tx-grid" style="margin-top:12px">
+        <!-- Use your actual file paths; PNG/JPG both fine -->
+        <figure class="tx-card">
+            <img src="images/IMG_7816.png" alt="Client 1 before and after — 93.4 kg to 87.5 kg">
+            <figcaption class="tx-caption"><strong>Client 1</strong> — 93.4 kg → 87.5 kg</figcaption>
+        </figure>
+    
+        <figure class="tx-card">
+            <img src="images/IMG_7813.png" alt="Client 2 before and after (front)">
+            <figcaption class="tx-caption"><strong>Client 2</strong> — front view progress</figcaption>
+        </figure>
+    
+        <figure class="tx-card">
+            <img src="images/IMG_7811.png" alt="Client 2 before and after (side)">
+            <figcaption class="tx-caption"><strong>Client 2</strong> — side view progress</figcaption>
+        </figure>
+    
+        <figure class="tx-card">
+            <img src="images/IMG_7812.png" alt="Client 3 before and after — 73.75 kg to 71.15 kg">
+            <figcaption class="tx-caption"><strong>Client 3</strong> — 73.75 kg → 71.15 kg</figcaption>
+        </figure>
+    
+        <figure class="tx-card">
+            <img src="images/IMG_7815.png" alt="Client 4 three-stage progress — 110 kg, 103 kg, 96 kg">
+            <figcaption class="tx-caption"><strong>Client 4</strong> — 110 kg → 96 kg</figcaption>
+        </figure>
+        </div>
+    </section>
+  
+
+    <!-- 4. PROGRAMS / SERVICES -->
+    <section id="programs" class="panel" aria-labelledby="programs-title" style="margin-top:16px">
       <span class="kicker">Programs</span>
-      <h2 id="programs-title">How We Can Work Together</h2>
-      <p class="muted">Choose the format that fits your goals, schedule, and budget.</p>
+      <h2 id="programs-title">Ways to Work Together</h2>
       <div class="grid-3" style="margin-top:12px">
         <div class="card">
           <h3>1:1 Personal Training</h3>
-          <p>In-person sessions with form coaching, progressive programming, and real-time adjustments.</p>
-          <ul>
-            <li>Custom plan & periodization</li>
-            <li>Technique video feedback</li>
-            <li>Nutrition guidance</li>
-          </ul>
+          <div class="checklist">
+            <span>• Private/partner sessions</span>
+            <span>• Progressive strength & mobility</span>
+            <span>• Real-time form coaching</span>
+          </div>
         </div>
         <div class="card">
           <h3>Small Group (2–4)</h3>
-          <p>Train with friends or meet accountability partners. Cost-effective, fun, and motivating.</p>
-          <ul>
-            <li>Skill-based circuits</li>
-            <li>Strength & conditioning</li>
-            <li>Shared progress tracking</li>
-          </ul>
+          <div class="checklist">
+            <span>• Shared motivation & lower cost</span>
+            <span>• Strength + conditioning circuits</span>
+            <span>• Built-in accountability</span>
+          </div>
         </div>
         <div class="card">
           <h3>Online Coaching</h3>
-          <p>Remote programming and weekly check-ins via app. Perfect for busy schedules.</p>
-          <ul>
-            <li>App-based workouts (video demos)</li>
-            <li>Weekly voice/video check-ins</li>
-            <li>Habit building & accountability</li>
-          </ul>
+          <div class="checklist">
+            <span>• App-based plan & video demos</span>
+            <span>• Weekly check-ins & form review</span>
+            <span>• Habit tracking & nutrition</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- TRANSFORMATIONS -->
-    <section id="transformations" class="panel" aria-labelledby="tx-title" style="margin-top:16px">
-      <span class="kicker">Results</span>
-      <h2 id="tx-title">Client Transformations</h2>
-      <p class="muted">Slide to compare before/after. Replace with your clients’ photos and stories (with permission).</p>
-      <div class="grid-2" style="margin-top:12px">
-        <div class="card">
-          <div class="compare" data-compare>
-            <img src="images/client1-before.jpg" alt="Client before"/>
-            <img class="after" src="images/client1-after.jpg" alt="Client after"/>
-            <div class="handle"></div>
-            <input type="range" min="0" max="100" value="50" aria-label="Compare before and after" />
-          </div>
-          <p><strong>Leila — 16 weeks</strong><br><span class="muted">-8kg fat, +3kg lean mass, improved confidence and posture.</span></p>
-        </div>
-        <div class="card">
-          <div class="compare" data-compare>
-            <img src="images/client2-before.jpg" alt="Client before"/>
-            <img class="after" src="images/client2-after.jpg" alt="Client after"/>
-            <div class="handle"></div>
-            <input type="range" min="0" max="100" value="45" aria-label="Compare before and after" />
-          </div>
-          <p><strong>Armin — 20 weeks</strong><br><span class="muted">Down 12cm waist, first unassisted pull-up, consistent nutrition.</span></p>
-        </div>
+    <!-- 5. HOW IT WORKS (simple 3-step) -->
+    <section id="how" class="panel" aria-labelledby="how-title" style="margin-top:16px">
+      <span class="kicker">Process</span>
+      <h2 id="how-title">How It Works</h2>
+      <div class="steps" style="margin-top:12px">
+        <div class="step"><strong>1) Free Call</strong>We talk goals, schedule, history, equipment, and preferences.</div>
+        <div class="step"><strong>2) Your Plan</strong>Strength, conditioning, and mobility built around your life and tracked weekly.</div>
+        <div class="step"><strong>3) Progress</strong>Technique cues, habit tweaks, and measurable wins every week.</div>
       </div>
     </section>
 
-    <!-- ABOUT / CERTS / EXPERIENCE -->
+    <!-- 6. ABOUT & CERTIFICATIONS (together) -->
     <section id="about" class="panel" aria-labelledby="about-title" style="margin-top:16px">
       <span class="kicker">About</span>
       <h2 id="about-title">Meet Coach Sepide</h2>
       <div class="grid-2" style="margin-top:8px">
         <div class="card">
           <h3>Philosophy</h3>
-          <p>I help busy professionals get strong, lean, and pain-free with efficient training and realistic nutrition. No crash diets, no gimmicks—just sustainable systems and accountability.</p>
-          <h3 style="margin-top:10px">Certifications</h3>
-          <ul>
-            <li>NASM-CPT (Certified Personal Trainer)</li>
-            <li>Precision Nutrition Level 1</li>
-            <li>CPR/AED Certified</li>
-          </ul>
+          <p>I help busy professionals get strong, lean, and pain‑free with efficient training and realistic nutrition. No crash diets — just sustainable systems and accountability.</p>
+          <p class="muted">Specialties: women’s strength, fat loss, corrective exercise, beginner & return‑to‑training.</p>
         </div>
         <div class="card">
           <h3>Experience</h3>
@@ -265,59 +334,35 @@
             <div class="t-item"><strong>2020–2022</strong> — Personal Trainer, Lift Lab</div>
             <div class="t-item"><strong>2019–2020</strong> — Internship, University Strength Center</div>
           </div>
-          <p class="muted" style="margin-top:8px">Specialties: strength, fat loss, mobility, prehab, beginner & return-to-training.</p>
         </div>
+      </div>
+
+      <h3 style="margin-top:16px">Certifications</h3>
+      <div class="cert-grid" style="margin-top:8px">
+        <button class="cert-btn" data-cert-src="images/certs/issa-cpt.jpg" data-cert-title="ISSA-CPT — Certified Personal Trainer" aria-haspopup="dialog" aria-controls="cert-modal">
+          <img class="cert-thumb" src="images/certs/issa-cpt_thumb.jpg" alt="ISSA-CPT thumbnail">
+          <div><div><strong>ISSA-CPT</strong></div><div class="muted">Certified Personal Trainer</div></div>
+        </button>
+        <button class="cert-btn" data-cert-src="images/ISSA-Nutritionist-Certification.pdf" data-cert-type="pdf" data-cert-title="ISSA Nutritionist" aria-haspopup="dialog" aria-controls="cert-modal">
+          <img class="cert-thumb" src="images/nutritionist.png" alt="Nutritionist thumbnail">
+          <div><div><strong>Nutritionist</strong></div><div class="muted">Nutrition Coaching</div></div>
+        </button>
+        <button class="cert-btn" data-cert-src="images/certs/corrective-exercise.jpg" data-cert-title="Corrective Exercise Specialist" aria-haspopup="dialog" aria-controls="cert-modal">
+          <img class="cert-thumb" src="images/certs/corrective_thumb.jpg" alt="Corrective Exercise thumbnail">
+          <div><div><strong>Corrective Exercise</strong></div><div class="muted">Movement & prehab</div></div>
+        </button>
       </div>
     </section>
 
-    <section id="certifications" class="panel" aria-labelledby="certs-title" style="margin-top:16px">
-      <span class="kicker">Certifications</span>
-      <h2 id="certs-title">Verified Credentials</h2>
-    
-      <div class="cert-grid" style="margin-top:12px">
-        <!-- Example image certificate -->
-        <button class="cert-btn" data-cert-src="images/certs/nasm-cpt.jpg" data-cert-title="NASM-CPT (Certified Personal Trainer)" aria-haspopup="dialog" aria-controls="cert-modal">
-          <img class="cert-thumb" src="images/certs/nasm-cpt_thumb.jpg" alt="NASM-CPT thumbnail">
-          <div>
-            <div><strong>NASM-CPT</strong></div>
-            <div class="muted">Certified Personal Trainer</div>
-          </div>
-        </button>
-    
-        <!-- Example PDF certificate -->
-        <button class="cert-btn" data-cert-src="images/ISSA-Nutritionist-Certification.pdf" data-cert-type="pdf" data-cert-title="Precision Nutrition Level 1" aria-haspopup="dialog" aria-controls="cert-modal">
-          <img class="cert-thumb" src="images/nutritionist.png" alt="Precision Nutrition L1 thumbnail">
-          <div>
-            <div><strong>Nutritionist</strong></div>
-            <div class="muted">Nutrition Coaching</div>
-          </div>
-        </button>
-    
-        <!-- Add more buttons as needed -->
-      </div>
-    </section>
-    
-    <!-- Modal dialog (place once near end of <main> or before </body>) -->
-    <dialog id="cert-modal" class="modal" aria-label="Certificate preview">
-      <div class="modal-header">
-        <div class="modal-title" id="cert-title">Certificate</div>
-        <button class="modal-close" aria-label="Close preview" onclick="document.getElementById('cert-modal').close()">×</button>
-      </div>
-      <div class="modal-body">
-        <img id="cert-img" alt="Certificate image" style="display:none">
-        <iframe id="cert-frame" title="Certificate PDF" style="display:none"></iframe>
-      </div>
-    </dialog>
-    
-    <!-- PRICING -->
+    <!-- 7. PRICING (after value shown) -->
     <section id="pricing" class="panel" aria-labelledby="pricing-title" style="margin-top:16px">
       <span class="kicker">Pricing</span>
-      <h2 id="pricing-title">Plans</h2>
+      <h2 id="pricing-title">Simple Plans</h2>
       <div class="grid-3" style="margin-top:12px">
         <div class="card">
           <h3>Starter</h3>
           <div class="price">$79<span class="muted">/mo</span></div>
-          <p class="muted">Online coaching: monthly plan + weekly check-ins.</p>
+          <p class="muted">Online coaching: monthly plan + weekly check‑ins.</p>
           <ul>
             <li>Personalized program</li>
             <li>Nutrition guidance</li>
@@ -327,19 +372,19 @@
         <div class="card" style="border-color:var(--accent)">
           <h3>Pro</h3>
           <div class="price">$249<span class="muted">/mo</span></div>
-          <p class="muted">Online coaching: bi-weekly calls, habit tracking, form checks.</p>
+          <p class="muted">Online coaching with bi‑weekly calls, habit tracking, and form checks.</p>
           <ul>
             <li>Everything in Starter</li>
-            <li>Bi-weekly calls</li>
+            <li>Bi‑weekly calls</li>
             <li>Form video feedback</li>
           </ul>
         </div>
         <div class="card">
           <h3>1:1 Sessions</h3>
           <div class="price">$75<span class="muted">/session</span></div>
-          <p class="muted">In-person training (packages available).</p>
+          <p class="muted">In‑person training (packages available).</p>
           <ul>
-            <li>60-minute sessions</li>
+            <li>60‑minute sessions</li>
             <li>Technique & mobility</li>
             <li>Progress tracking</li>
           </ul>
@@ -348,16 +393,16 @@
       <p class="muted" style="margin-top:10px">* Prices are placeholders — set your own rates, currencies, and packages.</p>
     </section>
 
-    <!-- FAQ -->
+    <!-- 8. FAQ -->
     <section id="faq" class="panel" aria-labelledby="faq-title" style="margin-top:16px">
       <span class="kicker">FAQ</span>
       <h2 id="faq-title">Common Questions</h2>
-      <details class="card"><summary><strong>Do I need a gym membership?</strong></summary><p>Not required. Programs can be designed for home or gym. In-person sessions happen at partner facilities.</p></details>
-      <details class="card"><summary><strong>What equipment do I need at home?</strong></summary><p>A pair of adjustable dumbbells and resistance bands are enough to begin. We’ll scale up as needed.</p></details>
-      <details class="card"><summary><strong>What’s your cancellation policy?</strong></summary><p>24-hour notice for in-person sessions. Online coaching is billed monthly and can be cancelled any cycle.</p></details>
+      <details class="card"><summary><strong>Do I need a gym membership?</strong></summary><p>Not required. Programs can be designed for home or gym. In‑person sessions happen at partner facilities.</p></details>
+      <details class="card"><summary><strong>What equipment do I need at home?</strong></summary><p>Adjustable dumbbells and bands are enough to begin. We scale up as needed.</p></details>
+      <details class="card"><summary><strong>What’s your cancellation policy?</strong></summary><p>24‑hour notice for in‑person sessions. Online coaching is billed monthly and can be cancelled each cycle.</p></details>
     </section>
 
-    <!-- BOOKING / CONTACT FORM -->
+    <!-- 9. BOOKING / CTA -->
     <section id="book" class="panel" aria-labelledby="book-title" style="margin-top:16px">
       <span class="kicker">Get Started</span>
       <h2 id="book-title">Book a Free Consultation</h2>
@@ -401,17 +446,6 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS (optional) -->
-    <section class="panel" aria-labelledby="test-title" style="margin-top:16px">
-      <span class="kicker">Testimonials</span>
-      <h2 id="test-title">What Clients Say</h2>
-      <div class="grid-3" style="margin-top:12px">
-        <div class="card"><p>“I finally feel in control of my fitness. Down 7kg, stronger than ever.”</p><p class="muted">— Sam R.</p></div>
-        <div class="card"><p>“The weekly check-ins kept me accountable without feeling restrictive.”</p><p class="muted">— Mina H.</p></div>
-        <div class="card"><p>“Technique cues fixed my squat in two sessions. No more knee pain.”</p><p class="muted">— Leo T.</p></div>
-      </div>
-    </section>
-
     <footer>
       <div>© <span id="yr"></span> Coach Sepide • Personal Training & Nutrition</div>
       <div class="social">
@@ -422,68 +456,80 @@
     </footer>
   </main>
 
+  <!-- Modal for certifications -->
+  <dialog id="cert-modal" class="modal" aria-label="Certificate preview">
+    <div class="modal-header">
+      <div class="modal-title" id="cert-title">Certificate</div>
+      <button class="modal-close" aria-label="Close preview" onclick="document.getElementById('cert-modal').close()">×</button>
+    </div>
+    <div class="modal-body">
+      <img id="cert-img" alt="Certificate image" style="display:none">
+      <iframe id="cert-frame" title="Certificate PDF" style="display:none"></iframe>
+    </div>
+  </dialog>
+
   <script>
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
-    // Before/After compare sliders
+    // Compare sliders
     document.querySelectorAll('[data-compare]').forEach(function(el){
       const input = el.querySelector('input[type="range"]');
-      const handle = el.querySelector('.handle');
-      function update(){
-        const pct = input.value;
-        el.style.setProperty('--pos', pct + '%');
-      }
-      input.addEventListener('input', update);
-      update();
+      function update(){ el.style.setProperty('--pos', input.value + '%'); }
+      input.addEventListener('input', update); update();
     });
 
-    // Certificate modal
+    // Certificate modal (updated)
     (function(){
-      const modal  = document.getElementById('cert-modal');
-      if (!modal) return; // safety if section removed
-      const img    = document.getElementById('cert-img');
-      const frame  = document.getElementById('cert-frame');
-      const title  = document.getElementById('cert-title');
+    const modal  = document.getElementById('cert-modal');
+    if (!modal) return;
+    const img    = document.getElementById('cert-img');
+    const frame  = document.getElementById('cert-frame');
+    const title  = document.getElementById('cert-title');
 
-      document.querySelectorAll('[data-cert-src]').forEach(btn => {
+    function withPdfZoom(src){
+        // Force browser PDF viewer to fit width
+        if (/#/.test(src)) return src + '&zoom=page-width';
+        return src + '#zoom=page-width';
+    }
+
+    document.querySelectorAll('[data-cert-src]').forEach(btn => {
         btn.addEventListener('click', () => {
-          const src   = btn.getAttribute('data-cert-src');
-          const kind  = btn.getAttribute('data-cert-type') || 'img';
-          const label = btn.getAttribute('data-cert-title') || 'Certificate';
+        const rawSrc = btn.getAttribute('data-cert-src');
+        const kind   = btn.getAttribute('data-cert-type') || (/.pdf$/i.test(rawSrc) ? 'pdf' : 'img');
+        const label  = btn.getAttribute('data-cert-title') || 'Certificate';
 
-          title.textContent = label;
+        title.textContent = label;
 
-          // reset views
-          img.style.display = 'none';
-          frame.style.display = 'none';
-          img.removeAttribute('src');
-          frame.removeAttribute('src');
+        // reset views
+        img.style.display = 'none'; img.removeAttribute('src');
+        frame.style.display = 'none'; frame.removeAttribute('src');
 
-          if (kind === 'pdf' || /\.pdf$/i.test(src)) {
-            frame.src = src;
+        if (kind === 'pdf') {
+            frame.src = withPdfZoom(rawSrc);   // ← auto zoom to page width
             frame.style.display = 'block';
-          } else {
-            img.src = src;
+        } else {
+            img.src = rawSrc;
             img.alt = label;
             img.style.display = 'block';
-          }
-          if (typeof modal.showModal === 'function') modal.showModal();
-          else modal.setAttribute('open','');
-        });
-      });
+        }
 
-      // click outside to close
-      modal.addEventListener('click', (e) => {
-        const rect = modal.getBoundingClientRect();
-        const inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+        if (typeof modal.showModal === 'function') modal.showModal();
+        else modal.setAttribute('open','');
+        });
+    });
+
+    // click outside to close
+    modal.addEventListener('click', (e) => {
+        const r = modal.getBoundingClientRect();
+        const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
         if (!inside) modal.close();
-      });
+    });
     })();
 
   </script>
 
-  <!-- Structured data (update values for SEO) -->
+  <!-- Basic SEO (update domain when you have it) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -491,8 +537,8 @@
     "name": "Coach Sepide",
     "description": "Personal training and online nutrition coaching.",
     "areaServed": "Montreal, QC",
-    "url": "https://novafit.example",
-    "image": "https://novafit.example/images/coach-hero.jpg",
+    "url": "https://<your-username>.github.io/",
+    "image": "https://<your-username>.github.io/images/sepide.png",
     "priceRange": "$$",
     "sameAs": ["https://instagram.com/yourhandle"],
     "address": {"@type":"PostalAddress","addressLocality":"Montreal","addressRegion":"QC","addressCountry":"CA"}
