@@ -176,6 +176,25 @@
     background:rgba(0,0,0,0);  /* transparent caption bar */
     }
 
+    /* --- Transformations carousel --- */
+    .tx-carousel{ position:relative; }
+    .tx-track{
+    display:flex; gap:16px; padding:8px 0 4px;
+    overflow-x:auto; overscroll-behavior-x: contain;
+    scroll-snap-type:x mandatory; scroll-padding-left:12px;
+    scrollbar-width:none; /* Firefox */
+    }
+    .tx-track::-webkit-scrollbar{ display:none; } /* Chrome/Safari */
+    .tx-card{ flex:0 0 auto; width:min(360px, 82vw); scroll-snap-align:start; }
+    .tx-nav{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:36px; height:36px; border-radius:999px; border:1px solid var(--border);
+    background:#fff; box-shadow:var(--shadow); display:grid; place-items:center;
+    cursor:pointer; user-select:none;
+    }
+    .tx-prev{ left:-6px; } .tx-next{ right:-6px; }
+    .tx-nav:disabled{ opacity:.4; cursor:default; }
+
   </style>
 </head>
 <body>
@@ -242,36 +261,40 @@
     <section id="transformations" class="panel" aria-labelledby="tx-title" style="margin-top:16px">
         <span class="kicker">Results</span>
         <h2 id="tx-title">Client Transformations</h2>
-        <p class="muted">Before/after progress shared with permission.</p>
+        <p class="muted">Before/after progress shared with permission. Swipe or use arrows.</p>
     
-        <div class="tx-grid" style="margin-top:12px">
-        <!-- Use your actual file paths; PNG/JPG both fine -->
-        <figure class="tx-card">
-            <img src="images/IMG_7816.png" alt="Client 1 before and after — 93.4 kg to 87.5 kg">
+        <div class="tx-carousel" data-tx-carousel>
+        <button class="tx-nav tx-prev" aria-label="Previous" disabled>‹</button>
+        <div class="tx-track">
+            <figure class="tx-card">
+            <img src="images/transformations/IMG_7816.png" alt="Client 1 before and after — 93.4 kg to 87.5 kg">
             <figcaption class="tx-caption"><strong>Client 1</strong> — 93.4 kg → 87.5 kg</figcaption>
-        </figure>
+            </figure>
     
-        <figure class="tx-card">
-            <img src="images/IMG_7813.png" alt="Client 2 before and after (front)">
-            <figcaption class="tx-caption"><strong>Client 2</strong> — 86 kg → 69 kg (front view)</figcaption>
-        </figure>
+            <figure class="tx-card">
+            <img src="images/transformations/IMG_7813.png" alt="Client 2 before and after (front)">
+            <figcaption class="tx-caption"><strong>Client 2</strong> — 86 kg → 69 kg (front)</figcaption>
+            </figure>
     
-        <figure class="tx-card">
-            <img src="images/IMG_7811.png" alt="Client 2 before and after (side)">
-            <figcaption class="tx-caption"><strong>Client 2</strong> — 86 kg → 69 kg (side view)</figcaption>
-        </figure>
+            <figure class="tx-card">
+            <img src="images/transformations/IMG_7811.png" alt="Client 2 before and after (side)">
+            <figcaption class="tx-caption"><strong>Client 2</strong> — 86 kg → 69 kg (side)</figcaption>
+            </figure>
     
-        <figure class="tx-card">
-            <img src="images/IMG_7812.png" alt="Client 3 before and after — 73.75 kg to 71.15 kg">
+            <figure class="tx-card">
+            <img src="images/transformations/IMG_7812.png" alt="Client 3 before and after — 73.75 kg to 71.15 kg">
             <figcaption class="tx-caption"><strong>Client 3</strong> — 73.75 kg → 71.15 kg</figcaption>
-        </figure>
+            </figure>
     
-        <figure class="tx-card">
-            <img src="images/IMG_7815.png" alt="Client 4 three-stage progress — 110 kg, 103 kg, 96 kg">
+            <figure class="tx-card">
+            <img src="images/transformations/IMG_7815.PNG" alt="Client 4 three-stage progress — 110 kg → 96 kg">
             <figcaption class="tx-caption"><strong>Client 4</strong> — 110 kg → 96 kg</figcaption>
-        </figure>
+            </figure>
+        </div>
+        <button class="tx-nav tx-next" aria-label="Next">›</button>
         </div>
     </section>
+    
   
 
     <!-- 4. PROGRAMS / SERVICES -->
@@ -525,6 +548,45 @@
         const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
         if (!inside) modal.close();
     });
+    })();
+
+    // Transformations carousel: arrows + snapping + horizontal wheel
+    (function(){
+    const car = document.querySelector('[data-tx-carousel]');
+    if(!car) return;
+    const track = car.querySelector('.tx-track');
+    const prev = car.querySelector('.tx-prev');
+    const next = car.querySelector('.tx-next');
+
+    const cardWidth = () => {
+        const card = track.querySelector('.tx-card');
+        return card ? card.getBoundingClientRect().width + 16 /*gap*/ : 320;
+    };
+
+    function updateButtons(){
+        const max = track.scrollWidth - track.clientWidth - 2;
+        prev.disabled = track.scrollLeft <= 2;
+        next.disabled = track.scrollLeft >= max;
+    }
+
+    function scrollByCards(n){
+        track.scrollBy({ left: n * cardWidth(), behavior: 'smooth' });
+        setTimeout(updateButtons, 350);
+    }
+
+    prev.addEventListener('click', () => scrollByCards(-1));
+    next.addEventListener('click', () => scrollByCards(+1));
+    track.addEventListener('scroll', updateButtons, { passive:true });
+
+    // make vertical wheel scroll move horizontally on desktop
+    track.addEventListener('wheel', (e) => {
+        if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+        track.scrollLeft += e.deltaY;
+        e.preventDefault();
+        }
+    }, { passive:false });
+
+    updateButtons();
     })();
 
   </script>
